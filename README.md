@@ -1,0 +1,1 @@
+This is a simple Java program to practice using JavaFX.
