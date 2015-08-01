@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 
 public class Main extends Application
 {
+	private static String exitTitle = "Confirm Exit";
+	private static String exitMessage = "Are you sure you wish to exit?";
 	Stage window;
 
 	Scene mainScene;
@@ -15,6 +17,7 @@ public class Main extends Application
 	Label mainLabel;
 
 	Button addButton;
+	Button closeButton;
 
 	VBox mainLayout;
 	public static void main (String[] args)
@@ -27,6 +30,15 @@ public class Main extends Application
 	{
 		window = primaryStage;
 		window.setTitle("My Application");
+		window.setOnCloseRequest(event1 -> {
+			event1.consume();
+			boolean check = AlertBox.display(exitTitle, exitMessage);
+			if(check)
+			{
+				closeProgram(0);
+			}
+
+		});
 
 		addButton = new Button("Add A Call");
 		addButton.setOnAction(event -> {
@@ -34,10 +46,19 @@ public class Main extends Application
 			System.out.println(result);
 		});
 
+		closeButton = new Button("Exit");
+		closeButton.setOnAction(event -> {
+			boolean check = AlertBox.display(exitTitle, exitMessage);
+			if(check)
+			{
+				closeProgram(0);
+			}
+		});
+
 		mainLabel = new Label("Call Center System");
 
 		mainLayout = new VBox(20);
-		mainLayout.getChildren().addAll(mainLabel, addButton);
+		mainLayout.getChildren().addAll(mainLabel, addButton, closeButton);
 		mainLayout.setAlignment(Pos.CENTER);
 
 		mainScene = new Scene(mainLayout, 250, 300);
@@ -48,5 +69,17 @@ public class Main extends Application
 
 	}
 
+	public static void closeProgram(int code)
+	{
+		System.exit(code);
+	}
+	public static String getExitTitle()
+	{
+		return exitTitle;
+	}
+	public static String getExitMessage ()
+	{
+		return exitMessage;
+	}
 
 }
