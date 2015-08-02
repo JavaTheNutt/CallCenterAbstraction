@@ -95,7 +95,7 @@ public abstract class Call
 	    } else {
 		    callbackCustomerStatus = "No";
 	    }
-        return "\nCall Id:\t" + callId +
+        return "\n\nCall Id:\t" + callId +
 		        "\nLength of Call:\t" + numMinutes +
 		        "\nCall Status:\t" + callStatus +
 		        "\nDoes the customer require a callback:\t" + callbackCustomerStatus+

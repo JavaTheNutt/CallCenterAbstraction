@@ -6,12 +6,16 @@ public class CallCenter
 	private Call [] calls;
 	private int total;
 
-	public CallCenter (int numberOfCalls)
+	public CallCenter ()
 	{
-		calls = new Call[numberOfCalls];
+		calls = new Call[5];
 		total = 0;
 	}
 
+	public int getTotal()
+	{
+		return total;
+	}
 	public boolean addCall(Call callIn)
 	{
 		if (!(isFull ()))
@@ -22,13 +26,54 @@ public class CallCenter
 		}
 		return false;
 	}
-
+	public boolean removeCall(String idIn)
+	{
+		int index = search(idIn);
+		if(index == -999){
+			return false;
+		} else{
+			for(int i = index; i <= total -2; i++){
+				calls[i] = calls[i+ 1];
+			}
+			total --;
+			return true;
+		}
+	}
 	public boolean isFull()
 	{
-		if(total == calls.length)
-		{
+		if(total == calls.length) {
 			return true;
 		}
 		return false;
+	}
+	public boolean isEmpty()
+	{
+		if(total == 0){
+			return true;
+		}
+		return false;
+	}
+	public String listAll()
+	{
+		String list = "";
+		if(!(isEmpty())){
+			for(int i = 0; i < total; i++){
+				list += calls[i].toString();
+			}
+		} else {
+			list = "Call list empty";
+		}
+		return list;
+	}
+	private int search(String idIn)
+	{
+		for(int i = 0; i < total; i++) {
+			Call tempCall = calls[i];
+			String tempId = tempCall.getCallId();
+			if(tempId.equals(idIn)){
+				return i;
+			}
+		}
+		return -999;
 	}
 }
