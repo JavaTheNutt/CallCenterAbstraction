@@ -1,6 +1,3 @@
-/**
- * Created by Joe on 27/07/2015.
- */
 public class CallCenter
 {
 	private Call [] calls;
@@ -64,6 +61,23 @@ public class CallCenter
 			list = "Call list empty";
 		}
 		return list;
+	}
+
+	public  Call getItem(String idIn){
+		int index = search(idIn);
+		if(index == -999){
+			return null;
+		}
+		return calls[index];
+	}
+	public boolean updateStatus(String idIn, String statusIn)
+	{
+		Call callToBeUpdated = getItem(idIn);
+		if(callToBeUpdated != null){
+			callToBeUpdated.setCallStatus(statusIn);
+			return true;
+		}
+		return false;
 	}
 	private int search(String idIn)
 	{

@@ -1,6 +1,3 @@
-/**
- * Created by Joe on 26/07/2015.
- */
 public abstract class Call
 {
     protected String callId;
