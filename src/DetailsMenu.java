@@ -28,11 +28,11 @@ public class DetailsMenu
 		Label shortestCallLabel = new Label("Display details of the shortest call");
 		Label callsAboveSuggestedLengthLabel = new Label("Display the details of all calls above the suggested length");
 
-		Button specificCallButton = new Button("Specific");
-		Button allCallsButton = new Button("All");
-		Button longestCallButton = new Button("Longest");
-		Button shortestCallButton = new Button("Shortest");
-		Button callsAboveSuggestedLengthButton = new Button("Above Suggested");
+		Button specificCallButton = new Button("Go");
+		Button allCallsButton = new Button("Go");
+		Button longestCallButton = new Button("Go");
+		Button shortestCallButton = new Button("Go");
+		Button callsAboveSuggestedLengthButton = new Button("Go");
 		Button back = new Button("Back");
 
 		specificCallButton.setOnAction(event1 -> SpecificCallGui.display());

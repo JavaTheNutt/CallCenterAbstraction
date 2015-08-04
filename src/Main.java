@@ -42,16 +42,18 @@ public class Main extends Application
 		Label checkEmptyLabel = new Label("Check if the call list is empty");
 		Label listAllLabel = new Label("List all calls");
 		Label detailsLabel = new Label("Call Details");
+		Label updateSuggestedLabel = new Label("Update suggested Length of calls");
 
 
-		Button addButton = new Button("Add");
-		Button removeButton = new Button("Remove");
-		Button updateStatusButton = new Button("Update");
-		Button checkFullButton = new Button("Check");
-		Button checkEmptyButton = new Button("Check");
-		Button closeButton = new Button("Exit");
-		Button listAllButton = new Button("List");
-		Button detailsButton = new Button("Details");
+		Button addButton = new Button("Go");
+		Button removeButton = new Button("Go");
+		Button updateStatusButton = new Button("Go");
+		Button checkFullButton = new Button("Go");
+		Button checkEmptyButton = new Button("Go");
+		Button closeButton = new Button("Go");
+		Button listAllButton = new Button("Go");
+		Button detailsButton = new Button("Go");
+		Button updateSuggestedButton = new Button("Go");
 
 		addButton.setOnAction(event -> {
 			String result = SelectType.display();
@@ -88,7 +90,7 @@ public class Main extends Application
 		detailsButton.setOnAction(event1 -> {
 			DetailsMenu.display();
 		});
-
+		updateSuggestedButton.setOnAction(event1 -> UpdateSuggestedGui.display());
 		closeButton.setOnAction(event -> {
 			boolean check = AlertBox.display(exitTitle, exitMessage);
 			if(check) {
@@ -111,12 +113,14 @@ public class Main extends Application
 		GridPane.setConstraints(checkEmptyButton, 1, 7);
 		GridPane.setConstraints(detailsLabel, 0, 8);
 		GridPane.setConstraints(detailsButton, 1, 8);
+		GridPane.setConstraints(updateSuggestedLabel, 0, 9);
+		GridPane.setConstraints(updateSuggestedButton, 1, 9);
 		GridPane.setConstraints(closeButton, 1, 12);
 
 		mainLayout = new GridPane();
 		mainLayout.getChildren().addAll(mainLabel, addButton, listAllButton, closeButton, removeButton,
 				addLabel, listAllLabel, removeLabel, updateStatusLabel, updateStatusButton, checkEmptyButton,
-				checkEmptyLabel, checkFullButton, checkFullLabel, detailsButton, detailsLabel);
+				checkEmptyLabel, checkFullButton, checkFullLabel, detailsButton, detailsLabel, updateSuggestedLabel, updateSuggestedButton);
 		mainLayout.setVgap(10);
 		mainLayout.setHgap(10);
 		mainLayout.setAlignment(Pos.CENTER);
@@ -144,8 +148,7 @@ public class Main extends Application
 
 	public static boolean addToCenter(Call callIn)
 	{
-		if(center.addCall(callIn))
-		{
+		if(center.addCall(callIn)) {
 			return true;
 		}
 		return false;
