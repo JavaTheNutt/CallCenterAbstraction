@@ -79,6 +79,40 @@ public class CallCenter
 		}
 		return false;
 	}
+	public Call longestCall()
+	{
+		int tempLongest = 0;
+		Call tempCall = null;
+		for(int i = 0; i < total; i++) {
+			if(calls[i].getNumMinutes() >= tempLongest){
+				tempLongest = calls[i].getNumMinutes();
+				tempCall = calls[i];
+			}
+		}
+		return tempCall;
+	}
+	public Call shortestCall()
+	{
+		int tempShortest = 1000;
+		Call tempCall = null;
+		for(int i = 0; i < total; i++) {
+			if(calls[i].getNumMinutes() <= tempShortest){
+				tempShortest = calls[i].getNumMinutes();
+				tempCall = calls[i];
+			}
+		}
+		return tempCall;
+	}
+	public String listCallsAboveSuggestedLength()
+	{
+		String tempList  = "";
+		for(int i = 0; i < total; i++) {
+			if(calls[i].getNumMinutes() > Call.getSuggestedLengthofCall()){
+				tempList += calls[i].toString();
+			}
+		}
+		return tempList;
+	}
 	private int search(String idIn)
 	{
 		for(int i = 0; i < total; i++) {

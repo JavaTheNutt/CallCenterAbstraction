@@ -15,24 +15,6 @@ public class Main extends Application
 
 	Scene mainScene;
 
-	Label mainLabel;
-	Label addLabel;
-	Label removeLabel;
-	Label listAllLabel;
-	Label updateStatusLabel;
-	Label checkFullLabel;
-	Label checkEmptyLabel;
-	Label detailsLabel;
-
-	Button addButton;
-	Button closeButton;
-	Button listAllButton;
-	Button removeButton;
-	Button updateStatusButton;
-	Button checkFullButton;
-	Button checkEmptyButton;
-	Button detailsButton;
-
 	GridPane mainLayout;
 	public static void main (String[] args)
 	{
@@ -52,24 +34,24 @@ public class Main extends Application
 			}
 		});
 
-		mainLabel = new Label("Call Center System");
-		addLabel = new Label("Add a call");
-		removeLabel = new Label("Remove a call");
-		updateStatusLabel = new Label("Update call status");
-		checkFullLabel = new Label("Check if the call list is full");
-		checkEmptyLabel = new Label("Check if the call list is empty");
-		listAllLabel = new Label("List all calls");
-		detailsLabel = new Label("Call Details");
+		Label mainLabel = new Label("Call Center System");
+		Label addLabel = new Label("Add a call");
+		Label removeLabel = new Label("Remove a call");
+		Label updateStatusLabel = new Label("Update call status");
+		Label checkFullLabel = new Label("Check if the call list is full");
+		Label checkEmptyLabel = new Label("Check if the call list is empty");
+		Label listAllLabel = new Label("List all calls");
+		Label detailsLabel = new Label("Call Details");
 
 
-		addButton = new Button("Add");
-		removeButton = new Button("Remove");
-		updateStatusButton = new Button("Update");
-		checkFullButton = new Button("Check");
-		checkEmptyButton = new Button("Check");
-		closeButton = new Button("Exit");
-		listAllButton = new Button("List");
-		detailsButton = new Button("Details");
+		Button addButton = new Button("Add");
+		Button removeButton = new Button("Remove");
+		Button updateStatusButton = new Button("Update");
+		Button checkFullButton = new Button("Check");
+		Button checkEmptyButton = new Button("Check");
+		Button closeButton = new Button("Exit");
+		Button listAllButton = new Button("List");
+		Button detailsButton = new Button("Details");
 
 		addButton.setOnAction(event -> {
 			String result = SelectType.display();
@@ -186,6 +168,33 @@ public class Main extends Application
 		return true;
 	}
 
+	public static String listAll()
+	{
+		String list = center.listAll();
+		return list;
+	}
+	public static String callToString(String idIn)
+	{
+		String list;
+		Call callRequested = center.getItem(idIn);
+		list = callRequested.toString();
+		return list;
+	}
+	public static Call getLongest()
+	{
+		return center.longestCall();
+	}
+	public static Call getShortest()
+	{
+		return center.shortestCall();
+	}
+	public static String aboveSuggested()
+	{
+		if(center.listCallsAboveSuggestedLength().trim().length() > 0){
+			return center.listCallsAboveSuggestedLength();
+		}
+		return "No calls above suggestedLength";
+	}
 	public static boolean statusUpdate(String idIn, String status)
 	{
 		if(center.updateStatus(idIn, status)){
