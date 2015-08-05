@@ -1,6 +1,3 @@
-/**
- * Created by Joe on 27/07/2015.
- */
 public class SalesCall extends Call
 {
 	private String itemRef;

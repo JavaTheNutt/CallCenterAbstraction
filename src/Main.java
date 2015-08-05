@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,7 +19,29 @@ public class Main extends Application
 	GridPane mainLayout;
 	public static void main (String[] args)
 	{
-		launch (args);
+		SalesCall call01 = new SalesCall("#437436hfd", 23, "open", true, "Joe Wemyss", 5, "Sales", "#044234", 25.12);
+		SalesCall call03 = new SalesCall("#437436hfd", 23, "open", true, "Joe Wemyss", 5, "Sales", "#044234", 25.12);
+		SalesCall call04 = new SalesCall("#437436hfd", 23, "open", true, "Joe Wemyss", 5, "Sales", "#044234", 25.12);
+		SalesCall call05 = new SalesCall("#437436hfd", 23, "open", true, "Joe Wemyss", 5, "Sales", "#044234", 25.12);
+		SalesCall call06 = new SalesCall("#437436hfd", 23, "open", true, "Joe Wemyss", 5, "Sales", "#044234", 25.12);
+		SupportCall call02 = new SupportCall("##09iiklkjd", 10, "pending", false, "Michelle Power", 3, "Support", "#99653", "0000009899");
+		SupportCall call07 = new SupportCall("##09iiklkjd", 10, "pending", false, "Michelle Power", 3, "Support", "#99653", "0000009899");
+		SupportCall call08 = new SupportCall("##09iiklkjd", 10, "pending", false, "Michelle Power", 3, "Support", "#99653", "0000009899");
+		SupportCall call09 = new SupportCall("##09iiklkjd", 10, "pending", false, "Michelle Power", 3, "Support", "#99653", "0000009899");
+		SupportCall call10 = new SupportCall("##09iiklkjd", 10, "pending", false, "Michelle Power", 3, "Support", "#99653", "0000009899");
+
+		center.addCall(call01);
+		center.addCall(call03);
+		center.addCall(call04);
+		center.addCall(call05);
+		center.addCall(call06);
+		center.addCall(call07);
+		center.addCall(call08);
+		center.addCall(call09);
+		center.addCall(call10);
+		center.addCall(call02);
+		launch(args);
+
 	}
 
 	@Override
@@ -68,8 +91,7 @@ public class Main extends Application
 		});
 
 		listAllButton.setOnAction(event -> {
-			String list = center.listAll();
-			ListCalls.display("List all calls", list);
+			TableList.display("All Calls", getAllFromCenter());
 		});
 
 		checkFullButton.setOnAction(event1 -> {
@@ -87,9 +109,11 @@ public class Main extends Application
 				PopUp.display("Not Empty", "The call center is not empty");
 			}
 		});
+
 		detailsButton.setOnAction(event1 -> {
 			DetailsMenu.display();
 		});
+
 		updateSuggestedButton.setOnAction(event1 -> UpdateSuggestedGui.display());
 		closeButton.setOnAction(event -> {
 			boolean check = AlertBox.display(exitTitle, exitMessage);
@@ -198,11 +222,19 @@ public class Main extends Application
 		}
 		return "No calls above suggestedLength";
 	}
+	private static ObservableList<Call> getAllFromCenter()
+	{
+		return center.getCalls();
+	}
 	public static boolean statusUpdate(String idIn, String status)
 	{
 		if(center.updateStatus(idIn, status)){
 			return true;
 		}
 		return false;
+	}
+	public static CallCenter getCenter()
+	{
+		return center;
 	}
 }

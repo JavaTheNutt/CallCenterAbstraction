@@ -1,3 +1,6 @@
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class CallCenter
 {
 	private Call [] calls;
@@ -5,7 +8,7 @@ public class CallCenter
 
 	public CallCenter ()
 	{
-		calls = new Call[5];
+		calls = new Call[30];
 		total = 0;
 	}
 
@@ -112,6 +115,35 @@ public class CallCenter
 			}
 		}
 		return tempList;
+	}
+	public ObservableList<Call> getCalls()
+	{
+		ObservableList<Call> callList = FXCollections.observableArrayList();
+		for(int i = 0; i < total; i++) {
+			callList.add(calls[i]);
+		}
+		return callList;
+	}
+	public  ObservableList<Call> getCalls(String idIn)
+	{
+		ObservableList<Call> callList = FXCollections.observableArrayList();
+		if(idIn.equalsIgnoreCase("sales") || idIn.equalsIgnoreCase("support")){
+			System.out.println(idIn);
+			for(int i = 0; i < total; i++) {
+				String tempType = calls[i].getCallType();
+				if(tempType.equals(idIn)){
+					System.out.println(calls[i].toString());
+					callList.add(calls[i]);
+				}
+			}
+		} else {
+			for(int i = 0; i < total; i++) {
+				if(calls[i].getCallId().equals(idIn)){
+					callList.add(calls[i]);
+				}
+			}
+		}
+		return callList;
 	}
 	private int search(String idIn)
 	{

@@ -27,12 +27,14 @@ public class DetailsMenu
 		Label longestCallLabel = new Label("Display details of the longest call");
 		Label shortestCallLabel = new Label("Display details of the shortest call");
 		Label callsAboveSuggestedLengthLabel = new Label("Display the details of all calls above the suggested length");
+		Label callsByTypeLabel = new Label("Display calls by type");
 
 		Button specificCallButton = new Button("Go");
 		Button allCallsButton = new Button("Go");
 		Button longestCallButton = new Button("Go");
 		Button shortestCallButton = new Button("Go");
 		Button callsAboveSuggestedLengthButton = new Button("Go");
+		Button callsByTypeButton = new Button("Go");
 		Button back = new Button("Back");
 
 		specificCallButton.setOnAction(event1 -> SpecificCallGui.display());
@@ -43,6 +45,9 @@ public class DetailsMenu
 		longestCallButton.setOnAction(event1 -> ListCalls.display("Longest Call", Main.getLongest().toString()));
 		shortestCallButton.setOnAction(event1 -> ListCalls.display("Shortest Call", Main.getShortest().toString()));
 		callsAboveSuggestedLengthButton.setOnAction(event1 -> ListCalls.display("Calls above suggested length", Main.aboveSuggested()));
+		callsByTypeButton.setOnAction(event1 -> {
+			DisplayCallsByType.display();
+		});
 		back.setOnAction(event -> window.close());
 
 		GridPane layout = new GridPane();
@@ -61,10 +66,13 @@ public class DetailsMenu
 		GridPane.setConstraints(shortestCallButton, 1, 4);
 		GridPane.setConstraints(callsAboveSuggestedLengthLabel, 0, 5);
 		GridPane.setConstraints(callsAboveSuggestedLengthButton, 1, 5);
-		GridPane.setConstraints(back, 0, 6);
+		GridPane.setConstraints(callsByTypeLabel, 0, 6);
+		GridPane.setConstraints(callsByTypeButton, 1, 6);
+		GridPane.setConstraints(back, 0, 7);
 
 		layout.getChildren().addAll(topLabel, specificCallButton, specificCallLabel, allCallsButton, allCallsLabel,
-				longestCallButton,longestCallLabel,shortestCallButton,shortestCallLabel, callsAboveSuggestedLengthLabel, callsAboveSuggestedLengthButton,back);
+				longestCallButton,longestCallLabel,shortestCallButton,shortestCallLabel, callsAboveSuggestedLengthLabel, callsAboveSuggestedLengthButton,back,
+				callsByTypeButton, callsByTypeLabel);
 
 		Scene scene = new Scene(layout);
 		window.setScene(scene);
